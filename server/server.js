@@ -6,6 +6,8 @@ const path = require("path");
 const db = require("./config/connection");
 
 const { typeDefs, resolvers } = require("./schemas");
+// const typeDefs = require("./schemas");
+// const resolvers = require("./schemas");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,7 +18,7 @@ const startServer = async () => {
     resolvers,
     context: authMiddleware,
   });
-  
+
   await server.start();
   server.applyMiddleware({ app });
   console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
